@@ -12,7 +12,7 @@ public class Track {
         this.trackName = trackName;
         this.comment = comment;
     }
-//Getter and Setter
+//Getter and Setter method
     public int getId() {
         return id;
     }
