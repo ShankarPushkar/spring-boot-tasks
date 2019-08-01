@@ -4,6 +4,7 @@ import com.stackroute.domain.Track;
 import com.stackroute.service.TrackService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class TrackController {
     public ResponseEntity<?> getByID(@RequestBody Track track){
         ResponseEntity responseEntity;
         try {
-            TrackService.getByID;
+            trackService.getTrackById();
             responseEntity=new ResponseEntity("Success", HttpStatus.CREATED);
         }catch (Exception e){
             responseEntity=new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
@@ -30,7 +31,7 @@ public class TrackController {
     public ResponseEntity<?> trackSave(@RequestBody Track track){
         ResponseEntity responseEntity;
         try {
-            TrackService.trackSave;
+            trackService.trackSave();
             responseEntity=new ResponseEntity("Success", HttpStatus.CREATED);
         }catch (Exception e){
             responseEntity=new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
@@ -41,18 +42,18 @@ public class TrackController {
     public ResponseEntity<?> getAllTrack(){
         ResponseEntity responseEntity;
         try {
-            TrackService.getAllTrack;
+            trackService.getAllTrack();
             responseEntity=new ResponseEntity("Success", HttpStatus.CREATED);
         }catch (Exception e){
             responseEntity=new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
-    @PostMapping("track")
+    @DeleteMapping("track")
     public ResponseEntity<?> trackDeleteById(@RequestBody Track track){
         ResponseEntity responseEntity;
         try {
-            TrackService.trackDeleteByID;
+            trackService.trackDeleteByID();
             responseEntity=new ResponseEntity("Success", HttpStatus.CREATED);
         }catch (Exception e){
             responseEntity=new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
@@ -63,7 +64,7 @@ public class TrackController {
     public ResponseEntity<?> trackUpdateById(@RequestBody Track track){
         ResponseEntity responseEntity;
         try {
-            TrackService.trackUpdateByID;
+            trackService.getTrackById();
             responseEntity=new ResponseEntity("Success", HttpStatus.CREATED);
         }catch (Exception e){
             responseEntity=new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
