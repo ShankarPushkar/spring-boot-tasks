@@ -9,5 +9,5 @@ Track getTrackById(int id);
 Track trackSave(Track track);
 List<Track> getAllTrack();
 Track trackDeleteById(int id);
-Track trackUpdateById(int id);
+Track trackUpdateById(int id,Track track);
 }

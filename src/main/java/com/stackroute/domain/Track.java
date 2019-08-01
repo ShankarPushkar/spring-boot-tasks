@@ -8,6 +8,9 @@ public class Track {
     private int id;
     private String trackName;
     private String comment;
+
+    public Track() {
+    }
     //Constructor
 
     public Track(int id, String trackName, String comment) {

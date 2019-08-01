@@ -3,9 +3,11 @@ package com.stackroute.service;
 import com.stackroute.domain.Track;
 import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
+@Service
 public class TrackServiceImpl implements TrackService {
     private TrackRepository trackRepository;
 
@@ -31,11 +33,14 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public Track trackDeleteById(int id) {
-        return null;
+        Optional<Track> optionalTrack = trackRepository.findById(id);
+        trackRepository.deleteById(id);
+        return optionalTrack.get();
     }
 
     @Override
-    public Track trackUpdateById(int id) {
+    public Track trackUpdateById(int id, Track track) {
         return null;
     }
+
 }
