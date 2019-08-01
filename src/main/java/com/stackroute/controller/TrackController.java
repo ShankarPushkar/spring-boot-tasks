@@ -2,6 +2,7 @@ package com.stackroute.controller;
 
 import com.stackroute.domain.Track;
 import com.stackroute.service.TrackService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,11 @@ public class TrackController {
     private TrackService trackService;
 
     //TrackService Constructor
-
-
-    public TrackController() {
-    }
-
+    @Autowired
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
+
     @GetMapping("track/{id}")
     public ResponseEntity<?> getByID(@PathVariable int id) {
         ResponseEntity responseEntity;
