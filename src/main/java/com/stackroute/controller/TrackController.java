@@ -37,15 +37,12 @@ public class TrackController {
 
     //POST Method for trackSave method, this method saves the track
     @PostMapping("track")
-    public ResponseEntity<?> trackSave(@RequestBody Track track) {
+    public ResponseEntity<?> trackSave(@RequestBody Track track) throws TrackAlreadyExistException {
         ResponseEntity responseEntity;
-        try {
+
             trackService.trackSave(track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
-        } catch (TrackAlreadyExistException e) {
-            responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-            e.printStackTrace();
-        }
+
         return responseEntity;
     }
     //GET Method for getAllTrack method, this method sends all the track as list
