@@ -40,11 +40,12 @@ public class TrackController {
     public ResponseEntity<?> trackSave(@RequestBody Track track) throws TrackAlreadyExistException {
         ResponseEntity responseEntity;
 
-            trackService.trackSave(track);
-            responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
+        trackService.trackSave(track);
+        responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
 
         return responseEntity;
     }
+
     //GET Method for getAllTrack method, this method sends all the track as list
     @GetMapping("track")
     public ResponseEntity<?> getAllTrack() {
@@ -80,7 +81,8 @@ public class TrackController {
         }
         return responseEntity;
     }
-    @GetMapping ("tracks/{name}")
+
+    @GetMapping("tracks/{name}")
     public ResponseEntity<?> getTrackByName(@PathVariable("name") String name) {
         ResponseEntity responseEntity;
         try {
