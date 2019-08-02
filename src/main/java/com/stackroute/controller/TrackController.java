@@ -67,11 +67,11 @@ public class TrackController {
         return responseEntity;
     }
 
-    @PostMapping("track/{id}")
-    public ResponseEntity<?> trackUpdateById(@PathVariable int id, @RequestBody Track track) {
+    @PatchMapping("track/{id}")
+    public ResponseEntity<?> trackUpdateById(@RequestBody Track track,@PathVariable("id") int id ) {
         ResponseEntity responseEntity;
         try {
-            trackService.getTrackById(id);
+            trackService.trackUpdateById(id,track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
