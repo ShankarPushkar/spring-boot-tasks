@@ -18,7 +18,7 @@ public class TrackController {
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
-
+//Get Method for getbyID method, this method finds a track by id
     @GetMapping("track/{id}")
     public ResponseEntity<?> getByID(@PathVariable int id) {
         ResponseEntity responseEntity;
@@ -30,7 +30,7 @@ public class TrackController {
         }
         return responseEntity;
     }
-
+//POST Method for trackSave method, this method saves the track
     @PostMapping("track")
     public ResponseEntity<?> trackSave(@RequestBody Track track) {
         ResponseEntity responseEntity;
@@ -68,10 +68,10 @@ public class TrackController {
     }
 
     @PatchMapping("track/{id}")
-    public ResponseEntity<?> trackUpdateById(@RequestBody Track track,@PathVariable("id") int id ) {
+    public ResponseEntity<?> trackUpdateById(@RequestBody Track track, @PathVariable("id") int id) {
         ResponseEntity responseEntity;
         try {
-            trackService.trackUpdateById(id,track);
+            trackService.trackUpdateById(id, track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
