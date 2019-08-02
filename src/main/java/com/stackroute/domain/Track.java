@@ -1,54 +1,18 @@
 package com.stackroute.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Track {
     @Id
     private int id;
     private String trackName;
     private String comment;
-
-    public Track() {
-    }
-    //Constructor
-
-    public Track(int id, String trackName, String comment) {
-        this.id = id;
-        this.trackName = trackName;
-        this.comment = comment;
-    }
-//Getter and Setter method
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTrackName() {
-        return trackName;
-    }
-
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-// toString
-    @Override
-    public String toString() {
-        return "Track{" +
-                "id=" + id +
-                ", trackName='" + trackName + '\'' +
-                ", comment='" + comment + '\'' +
-                '}';
-    }
 }
