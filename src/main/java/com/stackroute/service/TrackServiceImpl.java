@@ -55,7 +55,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public List<Track> getTrackByName(String name) {
-        return null;
+      return trackRepository.getTrackByName(name);
     }
 
 }
