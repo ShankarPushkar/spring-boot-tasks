@@ -1,6 +1,8 @@
 package com.stackroute.controller;
 
 import com.stackroute.domain.Track;
+import com.stackroute.exception.TrackAlreadyExistException;
+import com.stackroute.exception.TrackNotFoundException;
 import com.stackroute.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +23,12 @@ public class TrackController {
 
     //Get Method for getbyID method, this method finds a track by id
     @GetMapping("track/{id}")
-    public ResponseEntity<?> getByID(@PathVariable int id) {
+    public ResponseEntity<?> getTrackByID(@PathVariable int id) {
         ResponseEntity responseEntity;
         try {
             trackService.getTrackById(id);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
-        } catch (Exception e) {
+        } catch (TrackNotFoundException e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
         return responseEntity;
@@ -39,7 +41,7 @@ public class TrackController {
         try {
             trackService.trackSave(track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
-        } catch (Exception e) {
+        } catch (TrackAlreadyExistException e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
         return responseEntity;
