@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TrackRepository extends JpaRepository<Track, Integer> {
-    @Query("select track from Track track where track.name like ?1")
+    @Query("select t from Track t where t.trackName LIKE ?1")
     List<Track> getTrackByName(String name);
 }

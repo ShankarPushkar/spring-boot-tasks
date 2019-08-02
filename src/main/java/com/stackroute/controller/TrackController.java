@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "api/v1")
+@RequestMapping(value = "api/v1/")
 
 public class TrackController {
     private TrackService trackService;
@@ -53,8 +53,7 @@ public class TrackController {
     public ResponseEntity<?> getAllTrack() {
         ResponseEntity responseEntity;
         try {
-            trackService.getAllTrack();
-            responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
+            responseEntity = new ResponseEntity(trackService.getAllTrack(), HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
@@ -85,11 +84,10 @@ public class TrackController {
         return responseEntity;
     }
     @GetMapping ("tracks/{name}")
-    public ResponseEntity<?> getTracknByName(@PathVariable("name") String name) {
+    public ResponseEntity<?> getTrackByName(@PathVariable("name") String name) {
         ResponseEntity responseEntity;
         try {
-            trackService.getTrackByName(name);
-            responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
+            responseEntity = new ResponseEntity(trackService.getTrackByName(name), HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
