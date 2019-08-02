@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
+@Profile("dev")
 @Service
 @Qualifier("dummy")
 public class TrackDummyServiceImpl implements TrackService {
