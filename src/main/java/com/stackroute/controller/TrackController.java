@@ -84,7 +84,7 @@ public class TrackController {
         }
         return responseEntity;
     }
-    @PatchMapping("tracks/{name}")
+    @GetMapping ("tracks/{name}")
     public ResponseEntity<?> getTracknByName(@PathVariable("name") String name) {
         ResponseEntity responseEntity;
         try {
