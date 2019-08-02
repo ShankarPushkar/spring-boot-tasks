@@ -28,8 +28,9 @@ public class TrackController {
         try {
             trackService.getTrackById(id);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
-        } catch (TrackNotFoundException e) {
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (TrackNotFoundException ex) {
+            responseEntity = new ResponseEntity(ex.getMessage(), HttpStatus.CONFLICT);
+            ex.printStackTrace();
         }
         return responseEntity;
     }
@@ -42,7 +43,8 @@ public class TrackController {
             trackService.trackSave(track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (TrackAlreadyExistException e) {
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+            e.printStackTrace();
         }
         return responseEntity;
     }
