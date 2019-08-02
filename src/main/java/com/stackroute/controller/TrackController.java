@@ -18,7 +18,8 @@ public class TrackController {
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
-//Get Method for getbyID method, this method finds a track by id
+
+    //Get Method for getbyID method, this method finds a track by id
     @GetMapping("track/{id}")
     public ResponseEntity<?> getByID(@PathVariable int id) {
         ResponseEntity responseEntity;
@@ -30,7 +31,8 @@ public class TrackController {
         }
         return responseEntity;
     }
-//POST Method for trackSave method, this method saves the track
+
+    //POST Method for trackSave method, this method saves the track
     @PostMapping("track")
     public ResponseEntity<?> trackSave(@RequestBody Track track) {
         ResponseEntity responseEntity;
@@ -42,7 +44,7 @@ public class TrackController {
         }
         return responseEntity;
     }
-
+    //GET Method for getAllTrack method, this method sends all the track as list
     @GetMapping("track")
     public ResponseEntity<?> getAllTrack() {
         ResponseEntity responseEntity;
