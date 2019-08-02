@@ -20,15 +20,15 @@ class ApplicationListenerSeedData implements ApplicationListener<ContextRefreshe
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         System.out.println("Context Event Received");
-        Track track=new Track(1,"Gana","mast");
+        Track track=new Track(1,"Hello","Hello");
         trackRepository.save(track);
-        Track track2=new Track(2,"Ganaa","masttt");
+        Track track2=new Track(2,"How","How");
         trackRepository.save(track2);
-        Track track3=new Track(3,"Ganaaa","masttt");
+        Track track3=new Track(3,"Are","Are");
         trackRepository.save(track3);
-        Track track4=new Track(4,"Ganaaaa","masttttt");
+        Track track4=new Track(4,"You","You");
         trackRepository.save(track4);
-        Track track5=new Track(5,"Ganaaa","masttttt");
+        Track track5=new Track(5,"Mast?","Mastt");
         trackRepository.save(track5);
 
     }

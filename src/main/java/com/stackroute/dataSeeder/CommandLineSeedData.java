@@ -18,15 +18,15 @@ public class CommandLineSeedData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("CommandLine Event Received");
-        Track track=new Track(9,"Push","mast");
+        Track track=new Track(6,"Atul","Kumar");
         trackRepository.save(track);
-        Track track2=new Track(10,"Gangagaa","sttt");
+        Track track2=new Track(7,"Samresh","Babu");
         trackRepository.save(track2);
-        Track track3=new Track(11,"Gajajnaaa","matt");
+        Track track3=new Track(8,"Sneha","M");
         trackRepository.save(track3);
-        Track track4=new Track(12,"Ganaajwdajaa","ma");
+        Track track4=new Track(9,"Raju","Chacha");
         trackRepository.save(track4);
-        Track track5=new Track(13,"Ganashsa","mattt");
+        Track track5=new Track(10,"Shiv","Happy");
         trackRepository.save(track5);
 
     }
