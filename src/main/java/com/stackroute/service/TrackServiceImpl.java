@@ -1,12 +1,15 @@
 package com.stackroute.service;
 
 import com.stackroute.domain.Track;
+import com.stackroute.exception.TrackAlreadyExistException;
+import com.stackroute.exception.TrackNotFoundException;
 import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class TrackServiceImpl implements TrackService {
     private TrackRepository trackRepository;
@@ -17,12 +20,15 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public Track getTrackById(int id) {
+    public Track getTrackById(int id) throws TrackNotFoundException {
+        if (!trackRepository.existsById(id)) {
+            throw new TrackNotFoundException("Track Not Found");
+        }
         return trackRepository.findById(id).get();
     }
 
     @Override
-    public Track trackSave(Track track) {
+    public Track trackSave(Track track) throws TrackAlreadyExistException {
         return trackRepository.save(track);
     }
 
