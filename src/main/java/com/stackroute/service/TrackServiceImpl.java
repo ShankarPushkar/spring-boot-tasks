@@ -22,13 +22,16 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public Track getTrackById(int id) throws TrackNotFoundException {
         if (!trackRepository.existsById(id)) {
-            throw new TrackNotFoundException("Track Not Foun");
+            throw new TrackNotFoundException("Track Not Found");
         }
         return trackRepository.findById(id).get();
     }
 
     @Override
     public Track trackSave(Track track) throws TrackAlreadyExistException {
+        if (trackRepository.existsById(track.getId())){
+            throw new TrackAlreadyExistException("Track Already There");
+        }
         return trackRepository.save(track);
     }
 
@@ -47,6 +50,11 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public Track trackUpdateById(int id, Track track) {
 
+        return null;
+    }
+
+    @Override
+    public List<Track> getTrackByName(String name) {
         return null;
     }
 
