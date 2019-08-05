@@ -4,6 +4,7 @@ import com.stackroute.domain.Track;
 import com.stackroute.exception.TrackAlreadyExistException;
 import com.stackroute.exception.TrackNotFoundException;
 import com.stackroute.service.TrackService;
+import com.stackroute.service.TrackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -12,14 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "api/v1/")
-
 public class TrackController {
-    private TrackService trackService;
+    private TrackServiceImpl trackServiceImpl;
 
     //TrackService Constructor
     @Autowired
-    public TrackController(TrackService trackService) {
-        this.trackService = trackService;
+    public TrackController(TrackServiceImpl trackServiceImpl) {
+        this.trackServiceImpl = trackServiceImpl;
     }
 
     //Get Method for getbyID method, this method finds a track by id
@@ -27,7 +27,7 @@ public class TrackController {
     public ResponseEntity<?> getTrackByID(@PathVariable int id) {
         ResponseEntity responseEntity;
         try {
-            trackService.getTrackById(id);
+            trackServiceImpl.getTrackById(id);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (TrackNotFoundException ex) {
             responseEntity = new ResponseEntity(ex.getMessage(), HttpStatus.CONFLICT);
@@ -41,7 +41,7 @@ public class TrackController {
     public ResponseEntity<?> trackSave(@RequestBody Track track) throws TrackAlreadyExistException {
         ResponseEntity responseEntity;
 
-        trackService.trackSave(track);
+        trackServiceImpl.trackSave(track);
         responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
 
         return responseEntity;
@@ -52,7 +52,7 @@ public class TrackController {
     public ResponseEntity<?> getAllTrack() {
         ResponseEntity responseEntity;
         try {
-            responseEntity = new ResponseEntity(trackService.getAllTrack(), HttpStatus.CREATED);
+            responseEntity = new ResponseEntity(trackServiceImpl.getAllTrack(), HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
@@ -63,7 +63,7 @@ public class TrackController {
     public ResponseEntity<?> trackDeleteById(@PathVariable int id) {
         ResponseEntity responseEntity;
         try {
-            trackService.trackDeleteById(id);
+            trackServiceImpl.trackDeleteById(id);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
@@ -75,7 +75,7 @@ public class TrackController {
     public ResponseEntity<?> trackUpdateById(@RequestBody Track track, @PathVariable("id") int id) {
         ResponseEntity responseEntity;
         try {
-            trackService.trackUpdateById(id, track);
+            trackServiceImpl.trackUpdateById(id, track);
             responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
         } catch (Exception e) {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
@@ -83,14 +83,14 @@ public class TrackController {
         return responseEntity;
     }
 
-    @GetMapping("tracks/{name}")
-    public ResponseEntity<?> getTrackByName(@PathVariable("name") String name) {
-        ResponseEntity responseEntity;
-        try {
-            responseEntity = new ResponseEntity(trackService.getTrackByName(name), HttpStatus.CREATED);
-        } catch (Exception e) {
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
-        }
-        return responseEntity;
-    }
+//    @GetMapping("tracks/{name}")
+//    public ResponseEntity<?> getTrackByName(@PathVariable("name") String name) {
+//        ResponseEntity responseEntity;
+//        try {
+//            responseEntity = new ResponseEntity(trackServiceImpl.getTrackByName(name), HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+//        }
+//        return responseEntity;
+//    }
 }

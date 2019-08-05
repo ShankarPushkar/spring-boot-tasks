@@ -5,12 +5,10 @@ import com.stackroute.exception.TrackAlreadyExistException;
 import com.stackroute.exception.TrackNotFoundException;
 import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-@Profile("prod")
+
 @Service
 public class TrackServiceImpl implements TrackService {
     private TrackRepository trackRepository;
@@ -54,9 +52,9 @@ public class TrackServiceImpl implements TrackService {
         return null;
     }
 
-    @Override
-    public List<Track> getTrackByName(String name) {
-        return trackRepository.getTrackByName(name);
-    }
+//    @Override
+//    public List<Track> getTrackByName(String name) {
+//        return trackRepository.getTrackByName(name);
+//    }
 
 }

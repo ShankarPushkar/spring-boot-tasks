@@ -12,5 +12,5 @@ Track trackSave(Track track) throws TrackAlreadyExistException;
 List<Track> getAllTrack();
 Track trackDeleteById(int id);
 Track trackUpdateById(int id,Track track);
-List<Track> getTrackByName(String name);
+//List<Track> getTrackByName(String name);
 }

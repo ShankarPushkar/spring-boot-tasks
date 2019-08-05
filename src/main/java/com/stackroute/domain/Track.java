@@ -4,15 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString
 public class Track {
-    @Id
+   @Id
     private int id;
     private String trackName;
     private String comment;

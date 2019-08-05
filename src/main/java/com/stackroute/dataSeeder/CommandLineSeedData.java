@@ -2,7 +2,6 @@ package com.stackroute.dataSeeder;
 
 import com.stackroute.domain.Track;
 import com.stackroute.repository.TrackRepository;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

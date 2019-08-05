@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 @Profile("dev")
 @Service
-@Qualifier("dummy")
+@Qualifier("Dummy")
 public class TrackDummyServiceImpl implements TrackService {
     private TrackRepository trackRepository;
 
@@ -55,9 +55,9 @@ public class TrackDummyServiceImpl implements TrackService {
         return null;
     }
 
-    @Override
-    public List<Track> getTrackByName(String name) {
-        return trackRepository.getTrackByName(name);
-    }
+//    @Override
+//    public List<Track> getTrackByName(String name) {
+//        return trackRepository.getTrackByName(name);
+//    }
 
 }
