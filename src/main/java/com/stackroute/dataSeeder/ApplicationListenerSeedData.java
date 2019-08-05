@@ -3,13 +3,25 @@ package com.stackroute.dataSeeder;
 import com.stackroute.domain.Track;
 import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
+
 @Component
+@PropertySource("classpath:application.properties")
 class ApplicationListenerSeedData implements ApplicationListener<ContextRefreshedEvent> {
     private TrackRepository trackRepository;
+    @Value("${track1.id}")
+    private int id;
+    @Value("${track1.trackName}")
+    private String trackName;
+    @Value("${track1.comment}")
+    private String comment;
+    Track track1= new Track();
 
     @Autowired
     public ApplicationListenerSeedData(TrackRepository trackRepository) {
@@ -20,16 +32,10 @@ class ApplicationListenerSeedData implements ApplicationListener<ContextRefreshe
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         System.out.println("Context Event Received");
-        Track track=new Track(1,"Hello","Hello");
-        trackRepository.save(track);
-        Track track2=new Track(2,"How","How");
-        trackRepository.save(track2);
-        Track track3=new Track(3,"Are","Are");
-        trackRepository.save(track3);
-        Track track4=new Track(4,"You","You");
-        trackRepository.save(track4);
-        Track track5=new Track(5,"Mast?","Mastt");
-        trackRepository.save(track5);
+        track1.setId(id);
+        track1.setTrackName(trackName);
+        track1.setComment(trackName);
+        trackRepository.save(track1);
 
     }
 }
