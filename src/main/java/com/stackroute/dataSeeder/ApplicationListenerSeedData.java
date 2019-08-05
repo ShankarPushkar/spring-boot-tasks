@@ -15,6 +15,7 @@ import javax.validation.Valid;
 @PropertySource("classpath:application.properties")
 class ApplicationListenerSeedData implements ApplicationListener<ContextRefreshedEvent> {
     private TrackRepository trackRepository;
+    //Getting the Data from application.properties
     @Value("${track1.id}")
     private int id;
     @Value("${track1.trackName}")
@@ -32,9 +33,10 @@ class ApplicationListenerSeedData implements ApplicationListener<ContextRefreshe
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         System.out.println("Context Event Received");
+        //Setting the data
         track1.setId(id);
         track1.setTrackName(trackName);
-        track1.setComment(trackName);
+        track1.setComment(comment);
         trackRepository.save(track1);
 
     }
