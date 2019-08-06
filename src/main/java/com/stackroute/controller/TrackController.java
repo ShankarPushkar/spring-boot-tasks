@@ -3,10 +3,8 @@ package com.stackroute.controller;
 import com.stackroute.domain.Track;
 import com.stackroute.exception.TrackAlreadyExistException;
 import com.stackroute.exception.TrackNotFoundException;
-import com.stackroute.service.TrackService;
 import com.stackroute.service.TrackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,15 +38,13 @@ public class TrackController {
     @PostMapping("track")
     public ResponseEntity<?> trackSave(@RequestBody Track track) throws TrackAlreadyExistException {
         ResponseEntity responseEntity;
-
         trackServiceImpl.trackSave(track);
         responseEntity = new ResponseEntity("Success", HttpStatus.CREATED);
-
         return responseEntity;
     }
 
     //GET Method for getAllTrack method, this method sends all the track as list
-    @GetMapping("track")
+    @GetMapping("tracks")
     public ResponseEntity<?> getAllTrack() {
         ResponseEntity responseEntity;
         try {

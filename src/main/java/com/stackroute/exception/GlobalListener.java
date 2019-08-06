@@ -10,15 +10,28 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalListener extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(TrackAlreadyExistException.class)
-    protected ResponseEntity<Object> handleConflict(
-            RuntimeException ex, WebRequest request) {
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
-    }
-    @ExceptionHandler( TrackNotFoundException.class)
-    protected ResponseEntity<Object> handleConflict1(
-            RuntimeException ex, WebRequest request) {
-        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
-    }
+//    @ExceptionHandler(Exception.class)
+//    protected ResponseEntity<Object> handleConflict(
+//            RuntimeException ex, WebRequest request) {
+//        return new ResponseEntity<>(ex.getMessage(),HttpStatus.CONFLICT);
+//    }
+//    @ExceptionHandler(TrackAlreadyExistException.class)
+//    protected ResponseEntity<Object> handleConflict1(
+//            RuntimeException ex, WebRequest request) {
+//        return new ResponseEntity<>(ex.getMessage(),HttpStatus.CONFLICT);
+//    }
+//
+//    @ExceptionHandler( TrackNotFoundException.class)
+//    protected ResponseEntity<Object> handleConflict2(
+//            RuntimeException ex, WebRequest request) {
+//        return new ResponseEntity<>(ex.getMessage(),HttpStatus.CONFLICT);
+//    }
+@ExceptionHandler(value
+        = {TrackAlreadyExistException.class, TrackNotFoundException.class})
+protected ResponseEntity<Object> handleConflict(
+        Exception ex, WebRequest request) {
+    String bodyOfResponse = "This class is for the global exception controller";
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+}
 }
 

@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,12 +23,10 @@ public class TrackRepositoryTest {
 
     @Before
     public void setUp() {
-
         track = new Track();
         track.setId(99);
         track.setTrackName("John");
         track.setComment("Jenny");
-
     }
 
     @After
@@ -63,9 +59,9 @@ public class TrackRepositoryTest {
         trackRepository.save(track);
         trackRepository.save(track1);
 
+
         List<Track> list = trackRepository.findAll();
         Assert.assertEquals("Johny", list.get(0).getTrackName());
-
 
     }
 

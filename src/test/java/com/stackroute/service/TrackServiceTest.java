@@ -25,6 +25,7 @@ public class TrackServiceTest {
     //Inject the mocks as dependencies into UserServiceImpl
     @InjectMocks
     TrackServiceImpl trackService;
+
     List<Track> list = null;
 
     @Before
@@ -59,7 +60,7 @@ public class TrackServiceTest {
 
     @Test(expected = NullPointerException.class)
     public void saveUserTestFailure() throws TrackAlreadyExistException {
-        when(trackRepository.save(any())).thenReturn(null);
+        when(trackRepository.save(any())).thenReturn("Track Already There");
         Track savedTrack = trackService.trackSave(track);
         System.out.println("savedTrack" + savedTrack);
         //Assert.assertEquals(user,savedUser);
