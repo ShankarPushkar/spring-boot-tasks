@@ -5,6 +5,7 @@ import com.stackroute.domain.Track;
 import com.stackroute.exception.GlobalListener;
 import com.stackroute.exception.TrackAlreadyExistException;
 import com.stackroute.service.TrackServiceImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,6 +52,12 @@ public class TrackControllerTest {
         track.setComment("comment1");
         list = new ArrayList();
         list.add(track);
+    }
+
+    @After
+    public void tearDown() {
+        list = null;
+        track = null;
     }
 
     @Test

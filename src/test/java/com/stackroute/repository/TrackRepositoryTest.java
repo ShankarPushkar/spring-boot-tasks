@@ -17,9 +17,9 @@ import java.util.List;
 public class TrackRepositoryTest {
 
     @Autowired
-    TrackRepository trackRepository;
+    private TrackRepository trackRepository;
 
-    Track track;
+    private Track track;
 
     @Before
     public void setUp() {
@@ -31,7 +31,7 @@ public class TrackRepositoryTest {
 
     @After
     public void tearDown() {
-
+        track=null;
         trackRepository.deleteAll();
     }
 
@@ -58,8 +58,6 @@ public class TrackRepositoryTest {
         Track track1 = new Track(20, "Harry", "Jenny");
         trackRepository.save(track);
         trackRepository.save(track1);
-
-
         List<Track> list = trackRepository.findAll();
         Assert.assertEquals("Johny", list.get(0).getTrackName());
 
