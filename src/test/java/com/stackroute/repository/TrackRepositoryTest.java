@@ -31,13 +31,13 @@ public class TrackRepositoryTest {
 
     @After
     public void tearDown() {
-        track=null;
+        track = null;
         trackRepository.deleteAll();
     }
 
 
     @Test
-    public void testSaveUser() {
+    public void givenTrackShouldReturnSavedTrack() {
         trackRepository.save(track);
         Track fetchTrack = trackRepository.findById(track.getId()).get();
         Assert.assertEquals(99, fetchTrack.getId());
@@ -53,7 +53,7 @@ public class TrackRepositoryTest {
     }
 
     @Test
-    public void testGetAllUser() {
+    public void givenTracksShouldReturnAllTracks() {
         Track track = new Track(10, "Johny", "Jenny");
         Track track1 = new Track(20, "Harry", "Jenny");
         trackRepository.save(track);
@@ -61,6 +61,22 @@ public class TrackRepositoryTest {
         List<Track> list = trackRepository.findAll();
         Assert.assertEquals("Johny", list.get(0).getTrackName());
 
+    }
+
+    //    Fetching correct id success
+    @Test
+    public void givenTrackShouldReturnCorrectId() {
+        trackRepository.save(track);
+        Track trackDetails = trackRepository.findById(track.getId()).get();
+        Assert.assertEquals(99, trackDetails.getId());
+    }
+
+    //    fetching correct id failure
+    @Test
+    public void givenTrackShouldNotFetchCorrectId() {
+        trackRepository.save(track);
+        Track trackDetails = trackRepository.findById(track.getId()).get();
+        Assert.assertNotEquals(3, trackDetails.getId());
     }
 
 

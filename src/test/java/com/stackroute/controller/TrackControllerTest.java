@@ -61,7 +61,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void trackSave() throws Exception {
+    public void givenTrackShouldSaveTrack() throws Exception {
         when(trackService.trackSave(any())).thenReturn(track);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
@@ -70,7 +70,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void getAllTracks() throws Exception {
+    public void givenTracksShouldReturnAllTracks() throws Exception {
         when(trackService.getAllTrack()).thenReturn(list);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/tracks")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
@@ -87,7 +87,7 @@ public class TrackControllerTest {
 //                .andDo(MockMvcResultHandlers.print());
 //    }
     @Test
-    public void getTrackById() throws Exception {
+    public void givenTrackIdShouldReturnTrack() throws Exception {
         when(trackService.getTrackById(track.getId())).thenReturn(track);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track/10")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
@@ -96,7 +96,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void deleteTrackById() throws Exception {
+    public void givenTrackIdShouldReturnDeletedTrack() throws Exception {
         when(trackService.getTrackById(track.getId())).thenReturn(track);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track/10")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -105,7 +105,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void saveUserFailure() throws Exception {
+    public void givenAlreadyPresentTrackShouldReturnTrackAlreadyExistException() throws Exception {
         when(trackService.trackSave(any())).thenThrow(TrackAlreadyExistException.class);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
