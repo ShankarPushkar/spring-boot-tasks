@@ -48,7 +48,7 @@ public class TrackServiceTest {
     }
 
     @Test
-    public void saveTrackSuccess() throws TrackAlreadyExistException {
+    public void givenATrackShouldReturnSuccessMessage() throws TrackAlreadyExistException {
         when(trackRepository.save(any())).thenReturn(track);
         Track saveTrack = trackRepository.save(track);
         Assert.assertEquals(track, saveTrack);
@@ -57,7 +57,7 @@ public class TrackServiceTest {
     }
 
     @Test
-    public void getAllUser() {
+    public void givenTrackShouldReturnAllTheTrack() {
         trackRepository.save(track);
         //stubbing the mock to return specific data
         when(trackRepository.findAll()).thenReturn(list);
@@ -66,7 +66,7 @@ public class TrackServiceTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void saveUserTestFailure() throws TrackAlreadyExistException {
+    public void givenAlreadyThereTrackShouldReturnTrackAlreadyExistException() throws TrackAlreadyExistException {
         when(trackRepository.save(any())).thenReturn("Track Already There");
         Track savedTrack = trackService.trackSave(track);
         System.out.println("savedTrack" + savedTrack);
