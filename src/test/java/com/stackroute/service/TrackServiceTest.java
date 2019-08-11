@@ -4,6 +4,7 @@ package com.stackroute.service;
 import com.stackroute.domain.Track;
 import com.stackroute.exception.TrackAlreadyExistException;
 import com.stackroute.repository.TrackRepository;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,12 @@ public class TrackServiceTest {
         list.add(track);
     }
 
+    @After
+    public void tearDown() {
+        track = null;
+        list = null;
+    }
+
     @Test
     public void saveTrackSuccess() throws TrackAlreadyExistException {
         when(trackRepository.save(any())).thenReturn(track);
@@ -67,4 +74,5 @@ public class TrackServiceTest {
 
        /*doThrow(new UserAlreadyExistException()).when(userRepository).findById(eq(101));
        userService.saveUser(user);*/
-}}
+    }
+}
