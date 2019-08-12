@@ -65,7 +65,7 @@ public class TrackServiceTest {
         Assert.assertEquals(list, userList);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = TrackAlreadyExistException.class)
     public void givenAlreadyThereTrackShouldReturnTrackAlreadyExistException() throws TrackAlreadyExistException {
         when(trackRepository.save(any())).thenReturn("Track Already There");
         Track savedTrack = trackService.trackSave(track);
@@ -74,6 +74,14 @@ public class TrackServiceTest {
 
        /*doThrow(new UserAlreadyExistException()).when(userRepository).findById(eq(101));
        userService.saveUser(user);*/
+    }
+       @Test
+    public void givenATrackIdShouldReturnSuccessMessage() {
+        when(trackRepository.getById(any())).thenReturn(track);
+        Track saveTrack = trackRepository.save(track);
+        Assert.assertEquals(track, saveTrack);
+        //verify here verifies that trackRepository save method is only called once
+        verify(trackRepository, times(1)).getByID(track);
     }
 
 }
