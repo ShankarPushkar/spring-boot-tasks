@@ -78,14 +78,14 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    //    @Test
-//    public void getTrackByName() throws Exception {
-//        when(trackService.(track.getName())).thenReturn(track);
-//        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/tracks/name")
-//                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andDo(MockMvcResultHandlers.print());
-//    }
+       @Test
+   public void getTrackByName() throws Exception {
+       when(trackService.(track.getName())).thenReturn(track);
+       mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/tracks/name")
+               .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+               .andExpect(MockMvcResultMatchers.status().isOk())
+               .andDo(MockMvcResultHandlers.print());
+   }
     @Test
     public void givenTrackIdShouldReturnTrack() throws Exception {
         when(trackService.getTrackById(track.getId())).thenReturn(track);
