@@ -62,6 +62,16 @@ public class TrackRepositoryTest {
         Assert.assertEquals("Johny", list.get(0).getTrackName());
 
     }
+    @Test
+    public void givenTracksShouldReturnAllTracks() {
+        Track track = new Track(10, "Johny", "Jenny");
+        Track track1 = new Track(20, "Harry", "Jenny");
+        trackRepository.save(track);
+        trackRepository.save(track1);
+        List<Track> list = trackRepository.findAll();
+        Assert.assertNotEquals("Yellow", list.get(0).getTrackName());
+
+    }
 
     //    Fetching correct id success
     @Test
@@ -77,6 +87,20 @@ public class TrackRepositoryTest {
         trackRepository.save(track);
         Track trackDetails = trackRepository.findById(track.getId()).get();
         Assert.assertNotEquals(3, trackDetails.getId());
+    }
+     @Test
+    public void givenTrackNameShouldReturnCorrectTrack() {
+        trackRepository.save(track);
+        Track trackDetails = trackRepository.findById(track.getId()).get();
+        Assert.assertEquals(99, trackDetails.getId());
+    }
+
+    //    fetching correct id failure
+    @Test
+    public void givenTrackShouldNotFetchCorrectTrack() {
+        trackRepository.save(track);
+        Track trackDetails = trackRepository.findById(track.getId()).get();
+        Assert.assertNotEquals(10, trackDetails.getId());
     }
 
 }
