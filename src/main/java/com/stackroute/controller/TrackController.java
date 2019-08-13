@@ -63,7 +63,7 @@ public class TrackController {
         return responseEntity;
     }
 
-    @PutMapping("track/{id}")
+    @GetMapping("track/{id}")
     public ResponseEntity<?> trackUpdateById(@RequestBody Track track, @PathVariable("id") int id) throws TrackNotFoundException {
         ResponseEntity responseEntity;
         trackServiceImpl.trackUpdateById(id, track);
